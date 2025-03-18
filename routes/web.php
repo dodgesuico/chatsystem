@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,9 +14,9 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', function () {
-        return view('index'); // Placeholder for chat page
-    })->name('index');
+    Route::get('/index', [ChatController::class, 'index'])->name('index');
+    Route::get('/messages/{userID}', [ChatController::class, 'showMessages'])->name('show.messages');
+    Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send-message');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

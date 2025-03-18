@@ -24,13 +24,24 @@ return new class extends Migration
 
         // Insert static user (without hashing password)
         DB::table('users')->insert([
-            'userID'    => 555,
-            'fname'     => 'Dodge',
-            'lname'     => 'Suico',
-            'email'     => 'dodge@gmail.com',
-            'password'  => bcrypt('12345'), // Plain text password
-            'created_at' => now(),
-            'updated_at' => now(),
+            [
+                'userID'    => 555,
+                'fname'     => 'Dodge',
+                'lname'     => 'Suico',
+                'email'     => 'dodge@gmail.com',
+                'password'  => bcrypt('12345'), // Plain text password
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'userID'    => 666,
+                'fname'     => 'Lannes',
+                'lname'     => 'Flores',
+                'email'     => 'lannes@gmail.com',
+                'password'  => bcrypt('12345'), // Plain text password
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
         ]);
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
